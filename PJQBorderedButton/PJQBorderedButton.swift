@@ -10,23 +10,13 @@ import UIKit
 
 public class PJQBorderedButton: UIButton {
 	
-	private var _inactiveStateTitleColor: UIColor?
 	public var inactiveStateTitleColor: UIColor? {
-		get {
-			return _inactiveStateTitleColor
-		}
-		set {
-			_inactiveStateTitleColor = newValue
+		didSet {
 			self.updatePropertiesUsingTintColor()
 		}
 	}
-	private var _inactiveStateBorderColor: UIColor?
 	public var inactiveStateBorderColor: UIColor? {
-		get {
-			return _inactiveStateBorderColor
-		}
-		set {
-			_inactiveStateBorderColor = newValue
+		didSet {
 			self.updateBorderColor()
 		}
 	}
@@ -46,23 +36,17 @@ public class PJQBorderedButton: UIButton {
 	}
 	
 	override public var isEnabled: Bool {
-		get { return super.isEnabled }
-		set {
-			super.isEnabled = newValue
+		didSet {
 			self.updateBorderColor()
 		}
 	}
 	override public var isHighlighted: Bool {
-		get { return super.isHighlighted }
-		set {
-			super.isHighlighted = newValue
+		didSet {
 			self.updateBorderColor()
 		}
 	}
 	override public var isSelected: Bool {
-		get { return super.isSelected }
-		set {
-			super.isSelected = newValue
+		didSet {
 			self.updateBorderColor()
 		}
 	}
