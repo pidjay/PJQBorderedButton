@@ -10,20 +10,19 @@ import UIKit
 
 extension UIImage {
 	
-	class func ext_imageWithColor(color: UIColor) -> UIImage
-	{
+	class func ext_imageWithColor(_ color: UIColor) -> UIImage {
 		return self.ext_imageWithColor(color, size: CGSize(width: 1.0, height: 1.0))
 	}
 	
-	class func ext_imageWithColor(color: UIColor, size: CGSize) -> UIImage
-	{
+	class func ext_imageWithColor(_ color: UIColor, size: CGSize) -> UIImage {
+		
 		UIGraphicsBeginImageContext(size)
-		let context = UIGraphicsGetCurrentContext()
+		let context = UIGraphicsGetCurrentContext()!
 		
-		CGContextSetFillColorWithColor(context, color.CGColor)
-		CGContextFillRect(context, CGRect(origin: CGPoint.zero, size: size))
+		context.setFillColor(color.cgColor)
+		context.fill(CGRect(origin: .zero, size: size))
 		
-		let image = UIGraphicsGetImageFromCurrentImageContext()
+		let image = UIGraphicsGetImageFromCurrentImageContext()!
 		UIGraphicsEndImageContext()
 		
 		return image

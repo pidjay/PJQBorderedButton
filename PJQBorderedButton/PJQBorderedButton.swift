@@ -45,24 +45,24 @@ class PJQBorderedButton: UIButton {
 		}
 	}
 	
-	override var enabled: Bool {
-		get { return super.enabled }
+	override var isEnabled: Bool {
+		get { return super.isEnabled }
 		set {
-			super.enabled = newValue
+			super.isEnabled = newValue
 			self.updateBorderColor()
 		}
 	}
-	override var highlighted: Bool {
-		get { return super.highlighted }
+	override var isHighlighted: Bool {
+		get { return super.isHighlighted }
 		set {
-			super.highlighted = newValue
+			super.isHighlighted = newValue
 			self.updateBorderColor()
 		}
 	}
-	override var selected: Bool {
-		get { return super.selected }
+	override var isSelected: Bool {
+		get { return super.isSelected }
 		set {
-			super.selected = newValue
+			super.isSelected = newValue
 			self.updateBorderColor()
 		}
 	}
@@ -70,7 +70,7 @@ class PJQBorderedButton: UIButton {
 		get { return self.tintColor }
 	}
 	private var disabledTintColor: UIColor {
-		get { return self.disabledColor(self.tintColor) }
+		get { return self.disabledColor(for: self.tintColor) }
 	}
 	
 	override init(frame: CGRect) {
@@ -97,7 +97,7 @@ class PJQBorderedButton: UIButton {
 	
 	func setupView() {
 		
-		let activeStateTitleColor = self.activeStateTitleColor ?? UIColor.whiteColor()
+		let activeStateTitleColor = self.activeStateTitleColor ?? UIColor.white
 		
 		self.contentEdgeInsets = UIEdgeInsets(top: 6.0, left: 12.0, bottom: 6.0, right: 12.0)
 		
@@ -105,17 +105,17 @@ class PJQBorderedButton: UIButton {
 		self.layer.borderWidth = 1.0
 		self.layer.masksToBounds = true // prevents the image to spill out of the rounded border
 		
-		self.setBackgroundImage(UIImage.ext_imageWithColor(UIColor.clearColor()), forState: UIControlState.Normal)
+		self.setBackgroundImage(UIImage.ext_imageWithColor(UIColor.clear), for: .normal)
 		// .Highlighted uses tintColor
 		// .Selected uses tintColor
 		
 		// .Normal uses tintColor
-		self.setTitleColor(activeStateTitleColor, forState: UIControlState.Highlighted)
-		self.setTitleColor(activeStateTitleColor, forState: [UIControlState.Highlighted, UIControlState.Disabled])
-		self.setTitleColor(activeStateTitleColor, forState: UIControlState.Selected)
-		self.setTitleColor(activeStateTitleColor, forState: [UIControlState.Selected, UIControlState.Disabled])
-		self.setTitleColor(activeStateTitleColor, forState: [UIControlState.Highlighted, UIControlState.Selected])
-		self.setTitleColor(activeStateTitleColor, forState: [UIControlState.Highlighted, UIControlState.Selected, UIControlState.Disabled])
+		self.setTitleColor(activeStateTitleColor, for: .highlighted)
+		self.setTitleColor(activeStateTitleColor, for: [.highlighted, .disabled])
+		self.setTitleColor(activeStateTitleColor, for: .selected)
+		self.setTitleColor(activeStateTitleColor, for: [.selected, .disabled])
+		self.setTitleColor(activeStateTitleColor, for: [.highlighted, .selected])
+		self.setTitleColor(activeStateTitleColor, for: [.highlighted, .selected, .disabled])
 		
 		self.updatePropertiesUsingTintColor()
 	}
@@ -128,50 +128,50 @@ class PJQBorderedButton: UIButton {
 		// Use the active background color if available, otherwise fallback to the tint color
 		if let activeStateBackgroundColor = self.activeStateBackgroundColor {
 			enabledTintColor = activeStateBackgroundColor
-			disabledTintColor = self.disabledColor(activeStateBackgroundColor)
+			disabledTintColor = self.disabledColor(for: activeStateBackgroundColor)
 		}
 		
 		self.updateBorderColor()
 		
-		self.setBackgroundImage(UIImage.ext_imageWithColor(enabledTintColor), forState: UIControlState.Highlighted)
-		self.setBackgroundImage(UIImage.ext_imageWithColor(disabledTintColor), forState: [UIControlState.Highlighted, UIControlState.Disabled])
+		self.setBackgroundImage(UIImage.ext_imageWithColor(enabledTintColor), for: .highlighted)
+		self.setBackgroundImage(UIImage.ext_imageWithColor(disabledTintColor), for: [.highlighted, .disabled])
 		
-		self.setBackgroundImage(UIImage.ext_imageWithColor(enabledTintColor), forState: UIControlState.Selected)
-		self.setBackgroundImage(UIImage.ext_imageWithColor(disabledTintColor), forState: [UIControlState.Selected, UIControlState.Disabled])
+		self.setBackgroundImage(UIImage.ext_imageWithColor(enabledTintColor), for: .selected)
+		self.setBackgroundImage(UIImage.ext_imageWithColor(disabledTintColor), for: [.selected, .disabled])
 		
-		self.setBackgroundImage(UIImage.ext_imageWithColor(enabledTintColor), forState: [UIControlState.Highlighted, UIControlState.Selected])
-		self.setBackgroundImage(UIImage.ext_imageWithColor(disabledTintColor), forState: [UIControlState.Highlighted, UIControlState.Selected, UIControlState.Disabled])
+		self.setBackgroundImage(UIImage.ext_imageWithColor(enabledTintColor), for: [.highlighted, .selected])
+		self.setBackgroundImage(UIImage.ext_imageWithColor(disabledTintColor), for: [.highlighted, .selected, .disabled])
 		
 		// Use the title color if available
 		if let inactiveStateTitleColor = self.inactiveStateTitleColor {
 			enabledTintColor = inactiveStateTitleColor
-			disabledTintColor = self.disabledColor(inactiveStateTitleColor)
+			disabledTintColor = self.disabledColor(for: inactiveStateTitleColor)
 		}
 		
-		self.setTitleColor(enabledTintColor, forState: UIControlState.Normal)
-		self.setTitleColor(disabledTintColor, forState: [UIControlState.Normal, UIControlState.Disabled])
+		self.setTitleColor(enabledTintColor, for: .normal)
+		self.setTitleColor(disabledTintColor, for: [.normal, .disabled])
 	}
 	
 	func updateBorderColor() {
 		let newBorderColor: UIColor
-		if self.selected || self.highlighted {
-			newBorderColor = UIColor.clearColor() // otherwise when disabled the border and the background colors alpha are added
+		if self.isSelected || self.isHighlighted {
+			newBorderColor = UIColor.clear // otherwise when disabled the border and the background colors alpha are added
 		}
 		else {
 			if let inactiveStateBorderColor = self.inactiveStateBorderColor {
-				newBorderColor = self.enabled ? inactiveStateBorderColor : self.disabledColor(inactiveStateBorderColor)
+				newBorderColor = self.isEnabled ? inactiveStateBorderColor : self.disabledColor(for: inactiveStateBorderColor)
 			}
 			else {
-				newBorderColor = self.enabled ? self.enabledTintColor : self.disabledTintColor
+				newBorderColor = self.isEnabled ? self.enabledTintColor : self.disabledTintColor
 			}
 		}
-		self.layer.borderColor = newBorderColor.CGColor
+		self.layer.borderColor = newBorderColor.cgColor
 	}
 	
 	// MARK: - Helpers
 	
-	func disabledColor(color: UIColor) -> UIColor {
-		return color.colorWithAlphaComponent(0.5)
+	func disabledColor(for color: UIColor) -> UIColor {
+		return color.withAlphaComponent(0.5)
 	}
 	
 }
