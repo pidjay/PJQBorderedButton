@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69184F291FF91D6E001E2E56 /* PJQBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69184F271FF91D6E001E2E56 /* PJQBorderedButton.swift */; };
+		69184F2A1FF91D6E001E2E56 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69184F281FF91D6E001E2E56 /* UIImage+Extensions.swift */; };
 		69E3247F1FF9156D00B8563D /* PJQBorderedButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69E324751FF9156D00B8563D /* PJQBorderedButton.framework */; };
 		69E324841FF9156D00B8563D /* PJQBorderedButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E324831FF9156D00B8563D /* PJQBorderedButtonTests.swift */; };
 		69E324861FF9156D00B8563D /* PJQBorderedButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 69E324781FF9156D00B8563D /* PJQBorderedButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +25,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		69184F271FF91D6E001E2E56 /* PJQBorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PJQBorderedButton.swift; sourceTree = "<group>"; };
+		69184F281FF91D6E001E2E56 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		69E324751FF9156D00B8563D /* PJQBorderedButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PJQBorderedButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69E324781FF9156D00B8563D /* PJQBorderedButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PJQBorderedButton.h; sourceTree = "<group>"; };
 		69E324791FF9156D00B8563D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 			children = (
 				69E324781FF9156D00B8563D /* PJQBorderedButton.h */,
 				69E324791FF9156D00B8563D /* Info.plist */,
+				69184F271FF91D6E001E2E56 /* PJQBorderedButton.swift */,
+				69184F281FF91D6E001E2E56 /* UIImage+Extensions.swift */,
 			);
 			path = PJQBorderedButton;
 			sourceTree = "<group>";
@@ -148,6 +154,7 @@
 				TargetAttributes = {
 					69E324741FF9156D00B8563D = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					69E3247D1FF9156D00B8563D = {
@@ -196,6 +203,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69184F291FF91D6E001E2E56 /* PJQBorderedButton.swift in Sources */,
+				69184F2A1FF91D6E001E2E56 /* UIImage+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +343,7 @@
 		69E3248A1FF9156D00B8563D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -346,6 +356,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.quillere.PJQBorderedButton;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -354,6 +365,7 @@
 		69E3248B1FF9156D00B8563D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -374,6 +386,7 @@
 		69E3248D1FF9156D00B8563D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PJQBorderedButtonTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -387,6 +400,7 @@
 		69E3248E1FF9156D00B8563D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PJQBorderedButtonTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
