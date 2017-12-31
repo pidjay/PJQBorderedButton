@@ -8,10 +8,10 @@
 
 import UIKit
 
-class PJQBorderedButton: UIButton {
+public class PJQBorderedButton: UIButton {
 	
 	private var _inactiveStateTitleColor: UIColor?
-	var inactiveStateTitleColor: UIColor? {
+	public var inactiveStateTitleColor: UIColor? {
 		get {
 			return _inactiveStateTitleColor
 		}
@@ -21,7 +21,7 @@ class PJQBorderedButton: UIButton {
 		}
 	}
 	private var _inactiveStateBorderColor: UIColor?
-	var inactiveStateBorderColor: UIColor? {
+	public var inactiveStateBorderColor: UIColor? {
 		get {
 			return _inactiveStateBorderColor
 		}
@@ -31,11 +31,11 @@ class PJQBorderedButton: UIButton {
 		}
 	}
 	
-	var activeStateTitleColor: UIColor?
-	var activeStateBackgroundColor: UIColor?
+	public var activeStateTitleColor: UIColor?
+	public var activeStateBackgroundColor: UIColor?
 	
 	private var _cornerRadius: CGFloat?
-	var cornerRadius: CGFloat {
+	public var cornerRadius: CGFloat {
 		get {
 			return _cornerRadius ?? self.frame.height / 2.0
 		}
@@ -45,21 +45,21 @@ class PJQBorderedButton: UIButton {
 		}
 	}
 	
-	override var isEnabled: Bool {
+	override public var isEnabled: Bool {
 		get { return super.isEnabled }
 		set {
 			super.isEnabled = newValue
 			self.updateBorderColor()
 		}
 	}
-	override var isHighlighted: Bool {
+	override public var isHighlighted: Bool {
 		get { return super.isHighlighted }
 		set {
 			super.isHighlighted = newValue
 			self.updateBorderColor()
 		}
 	}
-	override var isSelected: Bool {
+	override public var isSelected: Bool {
 		get { return super.isSelected }
 		set {
 			super.isSelected = newValue
@@ -73,29 +73,29 @@ class PJQBorderedButton: UIButton {
 		get { return self.disabledColor(for: self.tintColor) }
 	}
 	
-	override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		self.setupView()
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		self.setupView()
 	}
 	
-	override func tintColorDidChange() {
+	override public func tintColorDidChange() {
 		super.tintColorDidChange()
 		
 		self.updatePropertiesUsingTintColor()
 	}
 	
-	override func layoutSubviews() {
+	override public func layoutSubviews() {
 		super.layoutSubviews()
 		
 		self.layer.cornerRadius = self.cornerRadius
 	}
 	
-	func setupView() {
+	private func setupView() {
 		
 		let activeStateTitleColor = self.activeStateTitleColor ?? UIColor.white
 		
@@ -120,7 +120,7 @@ class PJQBorderedButton: UIButton {
 		self.updatePropertiesUsingTintColor()
 	}
 	
-	func updatePropertiesUsingTintColor() {
+	private func updatePropertiesUsingTintColor() {
 		
 		var enabledTintColor = self.enabledTintColor
 		var disabledTintColor = self.disabledTintColor
@@ -152,7 +152,7 @@ class PJQBorderedButton: UIButton {
 		self.setTitleColor(disabledTintColor, for: [.normal, .disabled])
 	}
 	
-	func updateBorderColor() {
+	private func updateBorderColor() {
 		let newBorderColor: UIColor
 		if self.isSelected || self.isHighlighted {
 			newBorderColor = UIColor.clear // otherwise when disabled the border and the background colors alpha are added
@@ -170,7 +170,7 @@ class PJQBorderedButton: UIButton {
 	
 	// MARK: - Helpers
 	
-	func disabledColor(for color: UIColor) -> UIColor {
+	private func disabledColor(for color: UIColor) -> UIColor {
 		return color.withAlphaComponent(0.5)
 	}
 	
