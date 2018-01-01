@@ -8,6 +8,8 @@
 
 import UIKit
 
+public let  PJQBorderedButtonAutomaticCornerRadius = CGFloat.greatestFiniteMagnitude
+
 public class PJQBorderedButton: UIButton {
 	
 	public var inactiveStateTitleColor: UIColor? {
@@ -24,13 +26,8 @@ public class PJQBorderedButton: UIButton {
 	public var activeStateTitleColor: UIColor?
 	public var activeStateBackgroundColor: UIColor?
 	
-	private var _cornerRadius: CGFloat?
-	public var cornerRadius: CGFloat {
-		get {
-			return _cornerRadius ?? self.frame.height / 2.0
-		}
-		set {
-			_cornerRadius = newValue
+	public var cornerRadius: CGFloat = PJQBorderedButtonAutomaticCornerRadius {
+		didSet {
 			self.setNeedsLayout()
 		}
 	}
@@ -76,7 +73,13 @@ public class PJQBorderedButton: UIButton {
 	override public func layoutSubviews() {
 		super.layoutSubviews()
 		
-		self.layer.cornerRadius = self.cornerRadius
+		var cornerRadius = self.cornerRadius
+		
+		if self.cornerRadius == PJQBorderedButtonAutomaticCornerRadius {
+			cornerRadius = self.bounds.height / 2.0
+		}
+		
+		self.layer.cornerRadius = cornerRadius
 	}
 	
 	private func setupView() {
