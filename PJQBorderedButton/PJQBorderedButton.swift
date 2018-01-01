@@ -51,10 +51,10 @@ public class PJQBorderedButton: UIButton {
 		}
 	}
 	private var enabledTintColor: UIColor {
-		get { return self.tintColor }
+		return self.tintColor
 	}
 	private var disabledTintColor: UIColor {
-		get { return self.disabledColor(for: self.tintColor) }
+		return self.disabledColor(for: self.tintColor)
 	}
 	
 	override public init(frame: CGRect) {
